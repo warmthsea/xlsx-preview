@@ -1,0 +1,44 @@
+.previrew_info_excel {
+	.previrew_excel {
+		.id_not_show {
+			position: relative;
+			top: calc(50% - 1rem);
+			
+			font-size: 20px;
+			text-align: center;
+			opacity: 0.7;
+		}
+		table {
+			width: calc(100% + 0px);
+			tr {
+				td {
+					border: 1px solid rgba(0, 0, 0, 0.4);
+					padding: 0px 5px;
+					min-width: 80px;
+					min-height: 50px;
+					position: relative;
+					font-size: 13px;
+				}
+
+				& > td:first-child {
+					text-align: center;
+					min-width: 5rem;
+					padding: 7px 0px;
+					border-left: none;
+				}
+			}
+			tbody {
+				& > tr:first-child {
+					td {
+						border-top: none;
+					}
+				}
+				& > tr:last-child {
+					td {
+						// border-bottom: none;
+					}
+				}
+			}
+		}
+	}
+}

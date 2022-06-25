@@ -1,0 +1,29 @@
+.report_info_word{
+	margin-right: 5px;
+}
+.previrew_excel::-webkit-scrollbar,
+.report_info_word::-webkit-scrollbar {
+	/*滚动条整体样式*/
+	width: 10px;
+	/*高宽分别对应横竖滚动条的尺寸*/
+	height: 5px;
+	cursor: pointer;
+}
+.previrew_excel::-webkit-scrollbar-thumb,
+.report_info_word::-webkit-scrollbar-thumb {
+	/*滚动条里面小方块*/
+	border-radius: 2px;
+	background: #aaaaaa;
+	cursor: pointer;
+	transition: all 0.2s;
+	
+	&:hover{
+		transition: all 0.2s;
+		background: #717171;
+	}
+}
+.previrew_excel::-webkit-scrollbar-track,
+.report_info_word::-webkit-scrollbar-track {
+	/*滚动条里面轨道*/
+	background: rgba(255, 255, 255, 1);
+}
