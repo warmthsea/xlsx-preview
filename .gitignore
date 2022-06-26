@@ -27,8 +27,6 @@ coverage
 *.sln
 *.sw?
 
-excel
-excel.zip
 
 auto-imports.d.ts
 components.d.ts
