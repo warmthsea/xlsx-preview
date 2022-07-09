@@ -1,2 +1,2 @@
 # xlsx-previrew
-基于XLSX、vue3的xlsx简单文件预览
+基于XLSX、TypeScript、Vue3的 Excel(xlsx)类型文件预览
