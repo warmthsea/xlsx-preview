@@ -53,7 +53,7 @@ export const usePrevirewExcel = () => {
             }) => {
                 let workbook: WorkBook = XLSX.read(new Uint8Array(data as ArrayBuffer), {
                     type: "array",
-                    cellStyles: true
+                    cellStyles: true,
                 });
                 table_state.table_sheet = workbook.SheetNames;
                 table_state.info_data = workbook.Sheets;
@@ -70,7 +70,7 @@ export const usePrevirewExcel = () => {
             let worksheet: WorkSheet = JSON.parse(JSON.stringify(table_state.info_data[(table_state.table_sheet[index])]));
             if (worksheet.A1) {
                 // 渲染某一个sheet数据
-                table_state.table_item = XLSX.utils.sheet_to_html(worksheet as WorkSheet);
+                table_state.table_item = sheetTableDataFormat(XLSX.utils.sheet_to_csv(worksheet as WorkSheet));
             } else {
                 console.warn('暂无数据');
                 table_event_state.is_data = true;
@@ -79,6 +79,28 @@ export const usePrevirewExcel = () => {
         });
     };
 
+    /** format table data */
+    const sheetTableDataFormat = (csv: string): string => {
+        let html: string = "<table>";
+        let rows: string[] = csv.split("\n");
+        rows.forEach((row: string, idx: number) => {
+            let columns: string[] = row.split(",");
+            columns.unshift(String(idx + 1)); // 添加行索引
+            if (idx == 0) {
+                // 添加列索引
+                html += "<tr>";
+                for (let i: number = 0; i < columns.length; i++) {
+                    html += `<th>${i == 0 ? "" : String.fromCharCode(65 + i - 1)}</th>`;
+                }
+                html += "</tr>";
+            };
+            html += "<tr>";
+            columns.forEach((column: string) => html += `<td>${column}</td>`);
+            html += "</tr>";
+        });
+        html += "</table>";
+        return html;
+    };
 
     return {
         table_state, table_event_state,
