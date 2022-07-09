@@ -14,14 +14,10 @@
 
 			tbody {
 				position: relative;
-
-
 				
 				tr {
 					td {
-
-
-						border: 1px solid rgba(0, 0, 0, 0.4);
+						border: 0.5px solid rgba(0, 0, 0, 0.4);
 						box-sizing: border-box;
 						padding: 7px 5px;
 						min-width: 80px;
@@ -35,9 +31,8 @@
 							box-shadow: -0px -0px 0px 1px rgba(31, 187, 125) inset;
 						}
 					}
-
 					th {
-						border-right: 1px solid rgba(0, 0, 0, 0.4);
+						border-right: 0.5px solid rgba(0, 0, 0, 0.4);
 						background-color: rgb(245, 247, 249);
 						font-size: 14px;
 					}
