@@ -135,6 +135,6 @@ onUnmounted(() => {
 // popper
 .sheet_info_all_list {
   padding: 0px 0px !important;
-  width: 440px !important;
+  width: 200px !important;
 }
 </style>
