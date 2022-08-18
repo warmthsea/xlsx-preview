@@ -19,9 +19,9 @@
 					td {
 						border: 0.5px solid rgba(0, 0, 0, 0.4);
 						box-sizing: border-box;
-						padding: 7px 5px;
+						padding: 5px 3px;
 						min-width: 80px;
-						min-height: 50px;
+						min-height: 45px;
 						position: relative;
 						font-size: 13px;
 						text-align: center;
@@ -39,6 +39,7 @@
 
 					&>td:first-child {
 						min-width: 40px;
+						width: 45px;
 						border-left: none;
 						background-color: rgb(245, 247, 249);
 

@@ -9,6 +9,10 @@ const handleTap = (e: string) => {
   console.log("sheet-name：", e);
 };
 
+const goGitHub = (): void => {
+  window.open("https://github.com/warmthsea/xlsx-preview", "_blank");
+};
+
 onBeforeMount(() => {
   link.value = "./test.xlsx";
 });
@@ -18,7 +22,10 @@ onBeforeMount(() => {
   <div class="main_body">
     <div class="title">
       <h1>preview xlsx</h1>
-      <h3>简单预览xlsx文件</h3>
+      <h3>
+        <img @click="goGitHub()" src="@/assets/github.svg" alt="github" />
+        简单预览xlsx文件
+      </h3>
     </div>
     <div class="xlsx_body">
       <PrevirewExcel :link="link" @handleTap="handleTap"></PrevirewExcel>
@@ -45,6 +52,22 @@ onBeforeMount(() => {
     h3 {
       font-size: 24px;
       opacity: 0.8;
+
+      display: flex;
+      align-items: center;
+
+      img {
+        margin-right: 10px;
+        width: 50px;
+        opacity: 0.7;
+        transition: all 0.2s;
+
+        &:hover {
+          opacity: 1;
+          cursor: pointer;
+          transition: all 0.2s;
+        }
+      }
     }
   }
 
