@@ -1,9 +1,13 @@
-import axios from 'axios';
-import type { AxiosInstance } from 'axios';
+import axios from "axios";
+import type { AxiosInstance } from "axios";
 import * as XLSX from "xlsx";
-import type { WorkBook, WorkSheet } from 'xlsx';
-import { nextTick, onBeforeUpdate, onMounted, reactive, ref } from 'vue';
+import type { WorkBook, WorkSheet } from "xlsx";
+import { nextTick, onBeforeUpdate, onMounted, reactive, ref } from "vue";
 
+/**
+ * @掘金文章 https://juejin.cn/post/7123459055049408542
+ * @docs SheetJs中文文档 https://github.com/rockboom/SheetJS-docs-zh-CN
+ */
 interface ExcelType {
     /** 表格加载的总数据 */
     info_data: { [sheet: string]: WorkSheet };
@@ -13,7 +17,7 @@ interface ExcelType {
     table_sheet: Array<string>;
     /** sheet 滚动存储 */
     sheet_scroll: Array<number>;
-};
+}
 
 interface ExcelStyleType {
     /** 选择的sheet */
@@ -22,7 +26,7 @@ interface ExcelStyleType {
     is_loading: boolean;
     /** 是否有数据 */
     is_data: boolean;
-};
+}
 
 /** 获取数据、基本切换 */
 export const usePrevirewExcel = () => {
@@ -41,16 +45,14 @@ export const usePrevirewExcel = () => {
     });
 
     /** 初始化数据 */
-    const getExcelData = async (link: string = './test.xlsx'): Promise<boolean> => {
+    const getExcelData = async (link: string = "./test.xlsx"): Promise<boolean> => {
         let axi: AxiosInstance = axios.create();
         return new Promise(function (resolve, reject) {
             axi({
-                method: 'get',
-                responseType: 'arraybuffer',
+                method: "get",
+                responseType: "arraybuffer",
                 url: link,
-            }).then(async ({
-                data
-            }) => {
+            }).then(async ({ data }) => {
                 let workbook: WorkBook = XLSX.read(new Uint8Array(data as ArrayBuffer), {
                     type: "array",
                     cellStyles: true,
@@ -67,14 +69,15 @@ export const usePrevirewExcel = () => {
         return new Promise(async (resolve, reject) => {
             table_event_state.is_data = false;
             //这里取出第一个工作表,Excek文件是必须存在一个sheet页
-            let worksheet: WorkSheet = JSON.parse(JSON.stringify(table_state.info_data[(table_state.table_sheet[index])]));
+            let worksheet: WorkSheet = JSON.parse(JSON.stringify(table_state.info_data[table_state.table_sheet[index]]));
             if (worksheet.A1) {
                 // 渲染某一个sheet数据
+                // XLSX.utils API 请参考 SheetJs .d.ts文件或者 文档（sheet_to_csv | ）
                 table_state.table_item = sheetTableDataFormat(XLSX.utils.sheet_to_csv(worksheet as WorkSheet));
             } else {
-                console.warn('暂无数据');
+                console.warn("暂无数据");
                 table_event_state.is_data = true;
-            };
+            }
             resolve(true);
         });
     };
@@ -93,9 +96,9 @@ export const usePrevirewExcel = () => {
                     html += `<th>${i == 0 ? "" : String.fromCharCode(65 + i - 1)}</th>`;
                 }
                 html += "</tr>";
-            };
+            }
             html += "<tr>";
-            columns.forEach((column: string) => html += `<td>${column}</td>`);
+            columns.forEach((column: string) => (html += `<td>${column}</td>`));
             html += "</tr>";
         });
         html += "</table>";
@@ -103,8 +106,10 @@ export const usePrevirewExcel = () => {
     };
 
     return {
-        table_state, table_event_state,
-        getExcelData, sheetExcelTab
+        table_state,
+        table_event_state,
+        getExcelData,
+        sheetExcelTab,
     };
 };
 
@@ -115,7 +120,7 @@ interface SheetsScrollType {
     show_width: number;
     /** sheet左边滚动距离 */
     left_width: number;
-};
+}
 
 /** sheet 切换位移相关 */
 export const sheetTabScorllAbout = () => {
@@ -125,17 +130,17 @@ export const sheetTabScorllAbout = () => {
     const sheets_scroll = reactive<SheetsScrollType>({
         show_width: 0,
         all_width: 0,
-        left_width: 0
+        left_width: 0,
     });
     /** 点击切换滚动 */
-    const sheetScrollEvent = (direction: string = 'right', /** 可选参数 向左侧位移多远 */ left_width_nums: number = 0): void => {
-        if (direction == 'right') {
+    const sheetScrollEvent = (direction: string = "right", /** 可选参数 向左侧位移多远 */ left_width_nums: number = 0): void => {
+        if (direction == "right") {
             (sheets_ref.value as HTMLElement).scrollLeft += (sheets_ref.value as HTMLElement).clientWidth - 100;
-        } else if (direction == 'left') {
+        } else if (direction == "left") {
             (sheets_ref.value as HTMLElement).scrollLeft -= (sheets_ref.value as HTMLElement).clientWidth + 100;
         } else {
             (sheets_ref.value as HTMLElement).scrollLeft = left_width_nums - 100;
-        };
+        }
         sheets_scroll.left_width = (sheets_ref.value as HTMLElement).scrollLeft;
     };
     /** 操作Dom */
@@ -145,12 +150,12 @@ export const sheetTabScorllAbout = () => {
             let excel_td_dom: NodeListOf<any> = document.querySelectorAll("#excel_body_id table td");
             for (let i in excel_td_dom) {
                 //内容为空高度丢失问题
-                if (typeof excel_td_dom[i] == 'object') {
+                if (typeof excel_td_dom[i] == "object") {
                     if (!excel_td_dom[i].innerHTML) {
-                        excel_td_dom[i].height = '30';
-                    };
-                };
-            };
+                        excel_td_dom[i].height = "30";
+                    }
+                }
+            }
             resolve(true);
         });
     };
@@ -160,7 +165,7 @@ export const sheetTabScorllAbout = () => {
     const setItemRef = (el: any) => {
         if (el) {
             itemRefs.value.push(el);
-        };
+        }
     };
     /** 左右滚动 */
     const sheetToggleScroll = (index: number) => {
@@ -169,8 +174,8 @@ export const sheetTabScorllAbout = () => {
             if (Number(i) < index) {
                 left_width_nums += itemRefs.value[i].clientWidth;
             }
-        };
-        sheetScrollEvent('', left_width_nums);
+        }
+        sheetScrollEvent("", left_width_nums);
     };
 
     onMounted(async () => {
@@ -187,9 +192,12 @@ export const sheetTabScorllAbout = () => {
 
     return {
         excel_body_ref,
-        sheets_ref, sheets_scroll,
-        itemRefs, setItemRef,
-        sheetScrollEvent, sheetToggleScroll,
-        addSlotHtml
+        sheets_ref,
+        sheets_scroll,
+        itemRefs,
+        setItemRef,
+        sheetScrollEvent,
+        sheetToggleScroll,
+        addSlotHtml,
     };
 };
