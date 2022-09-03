@@ -86,6 +86,7 @@ export const usePrevirewExcel = () => {
     const sheetTableDataFormat = (csv: string): string => {
         let html: string = "<table>";
         let rows: string[] = csv.split("\n");
+        console.log(rows);
         rows.forEach((row: string, idx: number) => {
             let columns: string[] = row.split(",");
             columns.unshift(String(idx + 1)); // 添加行索引
