@@ -1,0 +1,20 @@
+.previrew_excel::-webkit-scrollbar {
+    /*滚动条整体样式*/
+    width: 10px;
+    /*高宽分别对应横竖滚动条的尺寸*/
+    height: 10px;
+    cursor: pointer;
+    background-color: transparent;
+}
+ 
+.previrew_excel::-webkit-scrollbar-thumb {
+    /*滚动条里面小方块*/
+    border-radius: 4px;
+    background-clip: content-box;
+    border: 2px solid transparent;
+    background-color: rgba(0, 0, 0, 0.15);
+
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.3);
+    }
+}

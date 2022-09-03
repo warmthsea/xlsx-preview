@@ -13,7 +13,6 @@ dist
 dist-ssr
 coverage
 *.local
-excel
 
 /cypress/videos/
 /cypress/screenshots/
