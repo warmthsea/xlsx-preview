@@ -3,11 +3,13 @@
 
 ![image](https://user-images.githubusercontent.com/45450994/178112667-88d36efb-264f-4644-b435-05bd8d696e75.png)
 
-### 其它方案
+### ★ 其它方案 
 [相关掘金贴子](https://juejin.cn/post/7123459055049408542)
 
 [file-view](https://github.com/warmthsea/file-view)
 支持docx, xlsx, pptx, pdf, 以及纯文本格式和各种图片格式的在线预览
+![image](https://user-images.githubusercontent.com/45450994/223472779-d7558624-7a98-424f-9cbe-788f6e5d13f9.png)
+
 
 [only-office](https://github.com/warmthsea/onlyoffice-vue-starter) [文档](https://api.onlyoffice.com/editors/advanced)
 需要配合服务端使用
