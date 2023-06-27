@@ -8,12 +8,17 @@
 
 [file-view](https://github.com/warmthsea/file-view)
 支持docx, xlsx, pptx, pdf, 以及纯文本格式和各种图片格式的在线预览
+
 ![image](https://user-images.githubusercontent.com/45450994/223472779-d7558624-7a98-424f-9cbe-788f6e5d13f9.png)
 
+<hr />
 
-[only-office](https://github.com/warmthsea/onlyoffice-vue-starter) [文档](https://api.onlyoffice.com/editors/advanced)
+[only-office](https://github.com/warmthsea/onlyoffice-vue-starter) / [文档](https://api.onlyoffice.com/editors/advanced)
 需要配合服务端使用
+
 ![LD)~FL316(_M~VYE@}T_CJB](https://user-images.githubusercontent.com/45450994/184916548-b1c3fae9-5dea-4ea9-8166-7898f5a1cf05.jpg)
 ![image](https://user-images.githubusercontent.com/45450994/185038826-4ad81578-f851-42d6-8467-6aad03f87ef2.png)
+
+<hr />
 
 [sheetjs](https://github.com/SheetJS/sheetjs)
